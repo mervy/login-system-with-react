@@ -71,4 +71,13 @@ router.post('/signin', async (req, res) => {
     }
 })
 
+router.get('/dashboard', async(req, res) =>{
+    try {
+        const users = await User.find().lean();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({message: "Listing users failed"})
+    }
+})
+
 export default router
